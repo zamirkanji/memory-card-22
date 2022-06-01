@@ -1,9 +1,7 @@
 export default function Card (props) {
     return (
         <div className="card-container">
-            <div className='card-grid'>
-
-            </div>
+            <img src={props.image} alt={props.name} />
         </div>
     )
 }
