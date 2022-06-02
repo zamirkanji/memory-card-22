@@ -16,19 +16,20 @@ import zachLavine from "../images/zachLavine.png";
 
 
 const CardGrid = () => {
+    const [key, setKey] = useState(0);
     const [cards, setCards] = useState([
-        {image: demarDerozan, name: 'Demar Derozan'},
-        {image: ericBledsoe, name: 'Eric Bledsoe'},
-        {image: goranDragic, name: 'Goran Dragic'},
-        {image: joelEmbiid, name: 'Joel Embiid'},
-        {image: johnWall , name: 'John Wall'},
-        {image: jrueHoliday, name: 'Jrue Holiday'},
-        {image: nickYoung, name: 'Nick Young'},
-        {image: patrickBeverley, name: 'Patrick Beverley'},
-        {image: paulGeorge, name: 'Paul George'},
-        {image: tristanThompson, name: 'Tristan Thompson'},
-        {image: willBarton, name: 'Will Barton'},
-        {image: zachLavine, name: 'Zach Lavine'},
+        {image: demarDerozan, name: 'Demar Derozan', id: 0},
+        {image: ericBledsoe, name: 'Eric Bledsoe', id: 1},
+        {image: goranDragic, name: 'Goran Dragic', id: 2},
+        {image: joelEmbiid, name: 'Joel Embiid', id: 3},
+        {image: johnWall , name: 'John Wall', id: 4},
+        {image: jrueHoliday, name: 'Jrue Holiday', id: 5},
+        {image: nickYoung, name: 'Nick Young', id: 6},
+        {image: patrickBeverley, name: 'Patrick Beverley', id: 7},
+        {image: paulGeorge, name: 'Paul George', id: 8},
+        {image: tristanThompson, name: 'Tristan Thompson', id: 9},
+        {image: willBarton, name: 'Will Barton', id: 10},
+        {image: zachLavine, name: 'Zach Lavine', id: 11},
     ]);
     // const cards = [
     //     {image: demarDerozan, name: 'Demar Derozan'},
@@ -55,7 +56,7 @@ const CardGrid = () => {
     return (
         <div className="card-grid">
             {cards.map(card => {
-                return <Card image={card.image} name={card.name} shuffledGrid={shuffleGrid}/>
+                return <Card image={card.image} name={card.name} key={card.id} shuffledGrid={shuffleGrid}/>
             })}
         </div>
     )
