@@ -1,7 +1,9 @@
-export default function Card (props) {
+export default function Card ({image, name, shuffleGrid}) {
+    console.log(image, name);
     return (
         <div className="card-container">
-            <img src={props.image} alt={props.name} />
+            <img className="card" src={image} alt={name} onClick={shuffleGrid} />
+            <h6>{name}</h6>
         </div>
     )
 }
