@@ -30,6 +30,7 @@ export default function CreateListItems() {
     ]
 
     const [cards, setCards] = useState(cardsArr);
+    // const [list, setList] = useState(listItems);
     //cards state needs to be set to cards.map so everytime you shuffle, you can setCards to shuffle
 
     const shuffleGrid = () => {
