@@ -29,7 +29,8 @@ export default function CreateListItems() {
         {image: zachLavine, nameOfPlayer: 'Zach Lavine', id: 11},
     ]
 
-    const [cards, setCards] = useState(cardsArr);
+    // const [cards, setCards] = useState(cardsArr);
+    const [cards, setCards] = useState(cardsArr.map((value, index) => index));
     // const [list, setList] = useState(listItems);
     //cards state needs to be set to cards.map so everytime you shuffle, you can setCards to shuffle
 
@@ -40,18 +41,26 @@ export default function CreateListItems() {
         // return shuffledCards;
     }
 
-    const listItems = cards.map((card) => {
-        return (
-            <li key={card.id} className="card-container" onClick={shuffleGrid}>
-                    <img className="card" src={card.image} alt={card.nameOfPlayer}/>
-                    <h6>{card.nameOfPlayer}</h6>
-            </li>
-        )    
-    })
+    // const listItems = cards.map((position) => {
+    //     return (
+    //         <li key={cardsArr[position].id} className="card-container" onClick={shuffleGrid}>
+    //                 <img className="card" src={cardsArr[position].image} alt={cardsArr[position].nameOfPlayer}/>
+    //                 <h6>{cardsArr[position].nameOfPlayer}</h6>
+    //         </li>
+    //     )    
+    // })
 
     return (  
         <ul>
-            {listItems}
+            {cards.map((position) => {
+                return (
+                    <li key={cardsArr[position].id} className="card-container" onClick={shuffleGrid}>
+                        <img className="card" src={cardsArr[position].image} alt={cardsArr[position].nameOfPlayer}/>
+                        <h6>{cardsArr[position].nameOfPlayer}</h6>
+                    </li>
+                )   
+            })}
+            {/* {listItems} */}
         </ul>
     )
 }
