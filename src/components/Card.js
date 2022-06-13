@@ -3,6 +3,13 @@ import { useState } from "react";
 export default function Card (props) {
 
     const [cardClicked, setCardClicked]= useState(false);
+    const isCardClicked = () => {
+        if (!cardClicked) {
+            console.log('card is not clicked');
+        } else {
+            console.log('card is clicked');
+        }
+    }
 
     return (  
         <li 
