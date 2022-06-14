@@ -31,40 +31,28 @@ export default function CardGrid() {
     ]
 
     const [cards, setCards] = useState(cardsArr.map((value, index) => index));
-    console.log(cards);
     
-    const randomizePosition = () => {
-        const randomizeNumber = Math.floor(Math.random() - 0.5);
-        return randomizeNumber;
+    const randomizePosition = (cards) => {
+        console.log(cards);
+        for (let i = cards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [cards[i], cards[j]] = [cards[j], cards[i]];
+        }
+        return cards
     }
     
     const shuffleGrid = () => {
-        console.log('shuffleGrid');
-        setCards(cards.sort(() => randomizePosition()));
-        // const shuffledCards = cards.sort(() => Math.random() - 0.5);
-        // return shuffledCards;
+        setCards(randomizePosition(cards));
+        console.log(cards);
     }
-
-    // const listItems = cards.map((position) => {
-    //     return (
-    //         <li key={cardsArr[position].id} className="card-container" onClick={shuffleGrid}>
-    //                 <img className="card" src={cardsArr[position].image} alt={cardsArr[position].nameOfPlayer}/>
-    //                 <h6>{cardsArr[position].nameOfPlayer}</h6>
-    //         </li>
-    //     )    
-    // })
 
     return (  
         <ul>
             {cards.map((position) => {
                 return (
-                    // <li key={cardsArr[position].id} className="card-container" onClick={shuffleGrid}>
-                    //     <img className="card" src={cardsArr[position].image} alt={cardsArr[position].nameOfPlayer}/>
-                    //     <h6>{cardsArr[position].nameOfPlayer}</h6>
-                    // </li>
                     <Card 
                         key={cardsArr[position].id} 
-                        onClick={shuffleGrid}
+                        shuffleGrid={shuffleGrid}
                         image={cardsArr[position].image} 
                         nameOfPlayer={cardsArr[position].nameOfPlayer}
                     />
@@ -73,14 +61,3 @@ export default function CardGrid() {
         </ul>
     )
 }
-
-
-// const CardGrid = () => {
-//     return (
-//         <div className="card-grid">
-//             <CreateListItems />
-//         </div>
-//     )
-// }
-
-// export default CardGrid;

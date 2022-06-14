@@ -1,25 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Card (props) {
+export default function Card ({id, shuffleGrid, image, nameOfPlayer}) {
+    // console.log(props);
 
     const [cardClicked, setCardClicked]= useState(false);
-    const isCardClicked = () => {
-        if (!cardClicked) {
-            console.log('card is not clicked');
-        } else {
-            console.log('card is clicked');
-        }
-    }
+
+    
+    useEffect(() => {
+            if (!cardClicked) {
+                console.log('card is not clicked');
+            } else {
+                console.log('card is clicked');
+            }
+    }, [cardClicked])
 
     return (  
         <li 
-            key={props.id} className="card-container" 
-            onClick={props.shuffleGrid}>
+            key={id} 
+            className="card-container"
+        >
                 <img 
                     className="card" 
-                    src={props.image} 
-                    alt={props.nameOfPlayer}/>
-                <h6>{props.nameOfPlayer}</h6>
+                    src={image} 
+                    alt={nameOfPlayer}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        shuffleGrid();
+                        setCardClicked(true);
+                    }}/>
+                <h6>{nameOfPlayer}</h6>
         </li>
     )
 }

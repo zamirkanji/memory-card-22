@@ -6,12 +6,12 @@ import Game from './components/Game';
 
 function App() {
 
-  const [score, setScore] = useState(0);
+  
 
   return (
     <div className="App">
       <Header />
-      <Game score={score}/>
+      <Game />
       <CardGrid />
     </div>
   );
