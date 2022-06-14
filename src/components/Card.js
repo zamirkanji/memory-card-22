@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Card ({id, shuffleGrid, image, nameOfPlayer}) {
-    // console.log(props);
-
-    const [cardClicked, setCardClicked]= useState(false);
-
+export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked}) {
     
     useEffect(() => {
             if (!cardClicked) {

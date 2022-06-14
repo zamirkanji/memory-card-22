@@ -14,7 +14,7 @@ import willBarton from "../images/willBarton.png";
 import zachLavine from "../images/zachLavine.png";
 
 
-export default function CardGrid() {
+export default function CardGrid({cardClicked, setCardClicked}) {
     const cardsArr = [
         {image: demarDerozan, nameOfPlayer: 'Demar Derozan', id: 0},
         {image: ericBledsoe, nameOfPlayer: 'Eric Bledsoe', id: 1},
@@ -46,6 +46,10 @@ export default function CardGrid() {
         console.log(cards);
     }
 
+    useEffect(() => {
+        console.log('cards are shuffled')
+    }, [setCards]);
+
     return (  
         <ul>
             {cards.map((position) => {
@@ -55,6 +59,8 @@ export default function CardGrid() {
                         shuffleGrid={shuffleGrid}
                         image={cardsArr[position].image} 
                         nameOfPlayer={cardsArr[position].nameOfPlayer}
+                        cardClicked={cardClicked}
+                        setCardClicked={setCardClicked}
                     />
                 )   
             })}
