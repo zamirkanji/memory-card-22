@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked}) {
-    
+export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked, handleCurrentScore}) {
+
     useEffect(() => {
             if (!cardClicked) {
                 console.log('card is not clicked');
@@ -22,6 +22,7 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
                     onClick={(e) => {
                         e.preventDefault();
                         shuffleGrid();
+                        handleCurrentScore();
                         setCardClicked(true);
                     }}/>
                 <h6>{nameOfPlayer}</h6>

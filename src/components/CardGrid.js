@@ -1,4 +1,5 @@
 import Card from './Card';
+import Game from './Game';
 import { useState, useEffect } from 'react';
 import demarDerozan from "../images/demarDerozan.png";
 import ericBledsoe from "../images/ericBledsoe.png";
@@ -14,7 +15,7 @@ import willBarton from "../images/willBarton.png";
 import zachLavine from "../images/zachLavine.png";
 
 
-export default function CardGrid({cardClicked, setCardClicked}) {
+export default function CardGrid() {
     const cardsArr = [
         {image: demarDerozan, nameOfPlayer: 'Demar Derozan', id: 0},
         {image: ericBledsoe, nameOfPlayer: 'Eric Bledsoe', id: 1},
@@ -31,6 +32,24 @@ export default function CardGrid({cardClicked, setCardClicked}) {
     ]
 
     const [cards, setCards] = useState(cardsArr.map((value, index) => index));
+    const [currentScore, setCurrentScore] = useState(0);
+    const [cardClicked, setCardClicked]= useState(false);
+
+
+    const bestScore = () => {
+      // if () {
+
+      // }
+    }
+
+    const gameOver = () => {
+      //setCardisclicked back to false
+      setCardClicked(false);
+    }
+
+    const handleCurrentScore = () => {
+        setCurrentScore(currentScore + 1);
+    }
     
     const randomizePosition = (cards) => {
         console.log(cards);
@@ -43,27 +62,31 @@ export default function CardGrid({cardClicked, setCardClicked}) {
     
     const shuffleGrid = () => {
         setCards(randomizePosition(cards));
-        console.log(cards);
+        // console.log(cards);
     }
 
     useEffect(() => {
         console.log('cards are shuffled')
     }, [setCards]);
 
-    return (  
-        <ul>
-            {cards.map((position) => {
-                return (
-                    <Card 
-                        key={cardsArr[position].id} 
-                        shuffleGrid={shuffleGrid}
-                        image={cardsArr[position].image} 
-                        nameOfPlayer={cardsArr[position].nameOfPlayer}
-                        cardClicked={cardClicked}
-                        setCardClicked={setCardClicked}
-                    />
-                )   
-            })}
-        </ul>
+    return (
+        <>
+            <Game currentScore={currentScore}/>
+            <ul>
+                {cards.map((position) => {
+                    return (
+                        <Card 
+                            key={cardsArr[position].id} 
+                            shuffleGrid={shuffleGrid}
+                            image={cardsArr[position].image} 
+                            nameOfPlayer={cardsArr[position].nameOfPlayer}
+                            cardClicked={cardClicked}
+                            setCardClicked={setCardClicked}
+                            handleCurrentScore={handleCurrentScore}
+                        />
+                    )   
+                })}
+            </ul>
+        </>  
     )
 }
