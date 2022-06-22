@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked, handleCurrentScore}) {
+export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked, handleCurrentScore, isCardClicked, handleCardClicked}) {
 
     useEffect(() => {
             if (!cardClicked) {
@@ -24,6 +24,7 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
                         shuffleGrid();
                         handleCurrentScore();
                         setCardClicked(true);
+                        handleCardClicked(isCardClicked);
                     }}/>
                 <h6>{nameOfPlayer}</h6>
         </li>

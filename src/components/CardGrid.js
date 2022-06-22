@@ -47,7 +47,7 @@ export default function CardGrid() {
     const [currentScore, setCurrentScore] = useState(0);
     // const [cardClicked, setCardClicked]= useState(false);
     const [cardClicked, setCardClicked]= useState(cardsArr.map((v, i) => {
-        console.log(v.cardClicked);
+        // console.log(v.cardClicked);
         return i;
     }))
 
@@ -66,6 +66,7 @@ export default function CardGrid() {
     }
 
     const cc = (cc) => {
+        console.log(cc);
         setCardClicked(cc = true);
     }
     
@@ -98,9 +99,13 @@ export default function CardGrid() {
                             shuffleGrid={shuffleGrid}
                             image={cardsArr[position].image} 
                             nameOfPlayer={cardsArr[position].nameOfPlayer}
-                            cc={() => {
-                                cc(cardsArr[[position].cardClicked]);
-                            }}
+
+                            isCardClicked={cardsArr[position].cardClicked}
+                            handleCardClicked={cc}
+                            
+                            // cc={() => {
+                            //     cc(cardsArr([position].cardClicked));
+                            // }}
                             cardClicked={cardClicked}
                             setCardClicked={setCardClicked}
                             handleCurrentScore={handleCurrentScore}
