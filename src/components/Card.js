@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked, handleCurrentScore, isCardClicked, handleCardClicked}) {
 
-    useEffect(() => {
-            if (!cardClicked) {
-                console.log('card is not clicked');
-            } else {
-                console.log('card is clicked');
-            }
-    }, [cardClicked])
+    // useEffect(() => {
+    //         if (!cardClicked) {
+    //             console.log('card is not clicked');
+    //         } else {
+    //             console.log('card is clicked');
+    //         }
+    // }, [cardClicked])
+    // console.log(cardClicked);
 
     return (  
         <li 
@@ -22,8 +23,8 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
                     onClick={(e) => {
                         e.preventDefault();
                         shuffleGrid();
+                        // setCardClicked(true);
                         handleCurrentScore();
-                        setCardClicked(true);
                         handleCardClicked(isCardClicked);
                     }}/>
                 <h6>{nameOfPlayer}</h6>

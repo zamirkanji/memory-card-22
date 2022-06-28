@@ -22,6 +22,7 @@ import paulPierce from "../images/paulPierce.png";
 
 
 export default function CardGrid() {
+    //array with all cards/data
     const cardsArr = [
         {image: demarDerozan, nameOfPlayer: 'Demar Derozan', id: 0, cardClicked: false},
         {image: ericBledsoe, nameOfPlayer: 'Eric Bledsoe', id: 1, cardClicked: false},
@@ -43,24 +44,21 @@ export default function CardGrid() {
         {image: paulPierce, nameOfPlayer: 'Paul Pierce', id: 17, cardClicked: false},
     ]
 
+    //useState hooks
     const [cards, setCards] = useState(cardsArr.map((value, index) => index));
     const [currentScore, setCurrentScore] = useState(0);
-    // const [cardClicked, setCardClicked]= useState(false);
-    const [cardClicked, setCardClicked]= useState(cardsArr.map((v, i) => {
-        // console.log(v.cardClicked);
-        return i;
-    }))
+    const [isCardClicked, isSetCardClicked] = useState();
+    const [cardClicked, setCardClicked]= useState(cardsArr.map((v, i) => i))
 
-    const bestScore = () => {
-      // if () {
 
-      // }
-    }
+    //game functions
+    const bestScore = () => {}
 
     const gameOver = () => {
       setCardClicked(false);
     }
 
+    //handle functions
     const handleCurrentScore = () => {
         setCurrentScore(currentScore + 1); 
     }
@@ -81,32 +79,32 @@ export default function CardGrid() {
     
     const shuffleGrid = () => {
         setCards(randomizePosition(cards));
-        // console.log(cards);
     }
 
+    // const test = (icc) => {
+    //     isSetCardClicked(icc);
+    //     console.log(iscardClicked);
+    // }
+
     useEffect(() => {
-        console.log('cards are shuffled')
+        console.log('cards are shuffled');
     }, [setCards]);
 
     return (
         <>
             <Game currentScore={currentScore}/>
-            <ul>
+            <ul className='card-grid'>
                 {cards.map((position) => {
                     return (
                         <Card 
                             key={cardsArr[position].id} 
-                            shuffleGrid={shuffleGrid}
                             image={cardsArr[position].image} 
                             nameOfPlayer={cardsArr[position].nameOfPlayer}
-
                             isCardClicked={cardsArr[position].cardClicked}
-                            handleCardClicked={cc}
                             
-                            // cc={() => {
-                            //     cc(cardsArr([position].cardClicked));
-                            // }}
                             cardClicked={cardClicked}
+                            handleCardClicked={cc}
+                            shuffleGrid={shuffleGrid}
                             setCardClicked={setCardClicked}
                             handleCurrentScore={handleCurrentScore}
                         />
