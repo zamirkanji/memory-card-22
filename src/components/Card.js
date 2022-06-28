@@ -11,16 +11,23 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
     // }, [cardClicked])
     // console.log(cardClicked);
 
+    const handleCardClick = (e, k) => {
+        console.log(e.target);
+        console.log(k);
+    }
+
     return (  
         <li 
             key={id} 
             className="card-container"
+            onClick={handleCardClick}
         >
                 <img 
                     className="card" 
                     src={image} 
                     alt={nameOfPlayer}
                     onClick={(e) => {
+                        console.log(e.target);
                         e.preventDefault();
                         shuffleGrid();
                         // setCardClicked(true);
