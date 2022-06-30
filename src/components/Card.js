@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked, handleCurrentScore, isCardClicked, handleCardClicked}) {
+export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked, handleCurrentScore, isCardClicked, handleCardClicked, obj}) {
 
     // useEffect(() => {
     //         if (!cardClicked) {
@@ -28,11 +28,13 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
                     alt={nameOfPlayer}
                     onClick={(e) => {
                         console.log(e.target);
+                        console.log(isCardClicked);
                         e.preventDefault();
                         shuffleGrid();
                         // setCardClicked(true);
                         handleCurrentScore();
                         handleCardClicked(isCardClicked);
+                        console.log(obj);
                     }}/>
                 <h6>{nameOfPlayer}</h6>
         </li>

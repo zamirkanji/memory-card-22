@@ -47,11 +47,11 @@ export default function CardGrid() {
     //useState hooks
     const [cards, setCards] = useState(cardsArr.map((value, index) => index));
     const [currentScore, setCurrentScore] = useState(0);
-    const [isCardClicked, isSetCardClicked] = useState();
+    // const [isCardClicked, isSetCardClicked] = useState();
     const [cardClicked, setCardClicked]= useState(cardsArr.map((v, i) => i))
 
 
-    //game functions
+    //game functions 
     const bestScore = () => {}
 
     const gameOver = () => {
@@ -101,12 +101,13 @@ export default function CardGrid() {
                             image={cardsArr[position].image} 
                             nameOfPlayer={cardsArr[position].nameOfPlayer}
                             isCardClicked={cardsArr[position].cardClicked}
-                            
+
                             cardClicked={cardClicked}
                             handleCardClicked={cc}
                             shuffleGrid={shuffleGrid}
                             setCardClicked={setCardClicked}
                             handleCurrentScore={handleCurrentScore}
+                            obj={cardsArr[position]}
                         />
                     )   
                 })}
