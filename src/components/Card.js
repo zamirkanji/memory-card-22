@@ -42,8 +42,8 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
                     alt={nameOfPlayer}
                     onClick={(e) => {
                         e.preventDefault();
-                        // shuffleGrid(getIndex);
-                        shuffleGrid();
+                        shuffleGrid(getIndex);
+                        // shuffleGrid();
                         // setCardClicked(true);
                         handleCurrentScore();
                         // handleCardClicked(obj, userId);

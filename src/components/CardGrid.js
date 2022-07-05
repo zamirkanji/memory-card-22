@@ -45,8 +45,8 @@ export default function CardGrid() {
     ]
 
     //useState hooks
-    // const [cards, setCards] = useState(cardsArr.map((value, index) => [value, index]));
-    const [cards, setCards] = useState(cardsArr.map((value, index) => index));
+    const [cards, setCards] = useState(cardsArr.map((value, index) => [value, index]));
+    // const [cards, setCards] = useState(cardsArr.map((value, index) => index));
     const [currentScore, setCurrentScore] = useState(0);
     const [cardClicked, setCardClicked]= useState(cardsArr.map((v, i) => {
         return [v, i];
@@ -82,9 +82,9 @@ export default function CardGrid() {
         return cards
     }
     
-    const shuffleGrid = () => {
-        // setCards(randomizePosition(getIndex()));
-        setCards(randomizePosition(cards));
+    const shuffleGrid = (getIndex) => {
+        setCards(randomizePosition(getIndex()));
+        // setCards(randomizePosition(cards));
     }
 
     const getIndex = () => {
@@ -117,8 +117,8 @@ export default function CardGrid() {
         <>
             <Game currentScore={currentScore}/>
             <ul className='card-grid'>
-                {/* {cards.map(card => card[1]).map(position => { */}
-                {cards.map(position => {
+                {cards.map(card => card[1]).map(position => {
+                // {/* {cards.map(position => { */}
                     // console.log(position);
                     return (
                         <Card 
@@ -130,8 +130,8 @@ export default function CardGrid() {
                             cardClicked={cardClicked}
                             shuffleGrid={shuffleGrid}
 
-                            // getIndex={getIndex}
-                            // getValue={getValue}
+                            getIndex={getIndex}
+                            getValue={getValue}
 
 
                             setCardClicked={setCardClicked}
