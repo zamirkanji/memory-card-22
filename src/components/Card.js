@@ -17,12 +17,12 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
 
 
 
-        console.log(filterCardClicked);
-        console.log(cardClicked.map(arr => {
-            //return each card object in array
-            console.log(arr[0].cardClicked);
-            return arr[0];
-        }))
+        // console.log(filterCardClicked);
+        // console.log(cardClicked.map(arr => {
+        //     //return each card object in array
+        //     console.log(arr[0].cardClicked);
+        //     return arr[0];
+        // }))
 
         // console.log(cardClicked.filter(arr => arr[1] === false));
 
@@ -42,7 +42,7 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
                     alt={nameOfPlayer}
                     onClick={(e) => {
                         e.preventDefault();
-                        shuffleGrid(getIndex);
+                        shuffleGrid();
                         // shuffleGrid();
                         // setCardClicked(true);
                         handleCurrentScore();

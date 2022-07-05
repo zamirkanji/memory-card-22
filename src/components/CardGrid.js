@@ -75,6 +75,7 @@ export default function CardGrid() {
     // }
     
     const randomizePosition = (cards) => {
+        //need to figure out how to replace cards[1]
         for (let i = cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [cards[i], cards[j]] = [cards[j], cards[i]];
@@ -82,8 +83,12 @@ export default function CardGrid() {
         return cards
     }
     
-    const shuffleGrid = (getIndex) => {
-        setCards(randomizePosition(getIndex()));
+    const shuffleGrid = () => {
+        console.log(cards.map(card => card[1]));
+        console.log(cards);
+        console.log(setCards);
+        setCards((v, i) => [v , randomizePosition(getIndex())]);
+        // setCards(randomizePosition(getIndex()));
         // setCards(randomizePosition(cards));
     }
 
@@ -104,7 +109,7 @@ export default function CardGrid() {
         return typeof (card) === 'number' ? true : false;
     }
 
-    console.log(cards.filter(card => typeof card[1] === 'number'));
+    // console.log(cards.filter(card => typeof card[1] === 'number'));
 
     useEffect(() => {
         // console.log('cards are shuffled');
