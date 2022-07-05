@@ -45,31 +45,36 @@ export default function CardGrid() {
     ]
 
     //useState hooks
+    // const [cards, setCards] = useState(cardsArr.map((value, index) => [value, index]));
     const [cards, setCards] = useState(cardsArr.map((value, index) => index));
     const [currentScore, setCurrentScore] = useState(0);
-    // const [isCardClicked, isSetCardClicked] = useState();
-    const [cardClicked, setCardClicked]= useState(cardsArr.map((v, i) => i))
-
+    const [cardClicked, setCardClicked]= useState(cardsArr.map((v, i) => {
+        return [v, i];
+    }));
 
     //game functions 
-    const bestScore = () => {}
+    // const bestScore = () => {
 
-    const gameOver = () => {
-      setCardClicked(false);
-    }
+    // }
+
+    // const gameOver = () => {
+    //   setCardClicked(false);
+    // }
 
     //handle functions
     const handleCurrentScore = () => {
-        setCurrentScore(currentScore + 1); 
+        setCurrentScore(s => s + 1); 
     }
 
-    const cc = (cc) => {
-        console.log(cc);
-        setCardClicked(cc = true);
-    }
+    // const cc = (obj) => {
+    //     console.log(obj);
+    //     console.log(obj.cardClicked);
+    //     setCardClicked(obj.cardClicked = true);
+    //     // setCards(cc = true);
+    //     console.log(obj.cardClicked);
+    // }
     
     const randomizePosition = (cards) => {
-        // console.log(cards);
         for (let i = cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [cards[i], cards[j]] = [cards[j], cards[i]];
@@ -78,33 +83,57 @@ export default function CardGrid() {
     }
     
     const shuffleGrid = () => {
+        // setCards(randomizePosition(getIndex()));
         setCards(randomizePosition(cards));
     }
 
-    // const test = (icc) => {
-    //     isSetCardClicked(icc);
-    //     console.log(iscardClicked);
-    // }
+    const getIndex = () => {
+        const index = cards.map(arr => arr[1]);
+        console.log(index);
+        return index;
+    }
+
+    const getValue = () => {
+        const value = cards.map(arr => arr[0]);
+        console.log(value);
+        return value;
+    }
+
+    const filterByNumber = (card) => {
+        console.log(card[1]);
+        return typeof (card) === 'number' ? true : false;
+    }
+
+    console.log(cards.filter(card => typeof card[1] === 'number'));
 
     useEffect(() => {
-        console.log('cards are shuffled');
-    }, [setCards]);
+        // console.log('cards are shuffled');
+        if (cardClicked === true) {
+            console.log("Game over");
+        }
+    }, [cardClicked]);
 
     return (
         <>
             <Game currentScore={currentScore}/>
             <ul className='card-grid'>
-                {cards.map((position) => {
+                {/* {cards.map(card => card[1]).map(position => { */}
+                {cards.map(position => {
+                    // console.log(position);
                     return (
                         <Card 
                             key={cardsArr[position].id} 
+                            userId={cardsArr[position].id}
                             image={cardsArr[position].image} 
                             nameOfPlayer={cardsArr[position].nameOfPlayer}
                             isCardClicked={cardsArr[position].cardClicked}
-
                             cardClicked={cardClicked}
-                            handleCardClicked={cc}
                             shuffleGrid={shuffleGrid}
+
+                            // getIndex={getIndex}
+                            // getValue={getValue}
+
+
                             setCardClicked={setCardClicked}
                             handleCurrentScore={handleCurrentScore}
                             obj={cardsArr[position]}
