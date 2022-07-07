@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import './styles/index.css';
 import CardGrid from './components/CardGrid.js';
 import Header from './components/Header.js';
-import Game from './components/Game';
 
-function App() {
-
+export default function App() {
   return (
     <div className="App">
       <Header />
@@ -13,5 +10,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

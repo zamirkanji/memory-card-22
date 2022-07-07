@@ -66,17 +66,14 @@ export default function CardGrid() {
     ])
 
     //useState hooks
-    // const [cards, setCards] = useState(cardsArr.map((value, index) => [value, index]));
     const [cards, setCards] = useState(cardsArr.map((value, index) => index));
+    const [cardClicked, setCardClicked] = useState(cardsArr.map((value, index) => [value, index]));
     const [currentScore, setCurrentScore] = useState(0);
-    const [cardClicked, setCardClicked]= useState(cardsArr.map((v, i) => {
-        return [v, i];
-    }));
 
     //game functions 
-    // const bestScore = () => {
+    const bestScore = () => {
 
-    // }
+    }
 
     // const gameOver = () => {
     //   setCardClicked(false);
@@ -86,14 +83,6 @@ export default function CardGrid() {
     const handleCurrentScore = () => {
         setCurrentScore(s => s + 1); 
     }
-
-    // const cc = (obj) => {
-    //     console.log(obj);
-    //     console.log(obj.cardClicked);
-    //     setCardClicked(obj.cardClicked = true);
-    //     // setCards(cc = true);
-    //     console.log(obj.cardClicked);
-    // }
     
     const randomizePosition = (cards) => {
         //need to figure out how to replace cards[1]
@@ -105,12 +94,12 @@ export default function CardGrid() {
     }
     
     const shuffleGrid = () => {
-        console.log(cards.map(card => card[1]));
-        console.log(cards);
-        console.log(setCards);
-        setCards((v, i) => [v , randomizePosition(getIndex())]);
+        // console.log(cards.map(card => card[1]));
+        // console.log(cards);
+        // console.log(setCards);
+        // setCards((v, i) => [v , randomizePosition(getIndex())]);
         // setCards(randomizePosition(getIndex()));
-        // setCards(randomizePosition(cards));
+        setCards(randomizePosition(cards));
     }
 
     const getIndex = () => {
@@ -130,18 +119,16 @@ export default function CardGrid() {
         return typeof (card) === 'number' ? true : false;
     }
 
-    // console.log(cards.filter(card => typeof card[1] === 'number'));
-
-    useEffect(() => {
-        // console.log('cards are shuffled');
-        if (cardClicked === true) {
-            console.log("Game over");
-        }
-    }, [cardClicked]);
+    // useEffect(() => {
+    //     // console.log('cards are shuffled');
+    //     if (cardClicked === true) {
+    //         console.log("Game over");
+    //     }
+    // }, [cardClicked]);
 
     return (
         <>
-            <Game currentScore={currentScore}/>
+            <Game currentScore={currentScore} bestScore={bestScore}/>
             <ul className='card-grid'>
                 {/* {cards.map(card => card[1]).map(position => { */}
                 {cards.map(position => {
@@ -152,17 +139,10 @@ export default function CardGrid() {
                             userId={cardsArr[position].id}
                             image={cardsArr[position].image} 
                             nameOfPlayer={cardsArr[position].nameOfPlayer}
-                            isCardClicked={cardsArr[position].cardClicked}
-                            cardClicked={cardClicked}
                             shuffleGrid={shuffleGrid}
-
-                            getIndex={getIndex}
-                            getValue={getValue}
-
-
+                            cardClicked={cardClicked}
                             setCardClicked={setCardClicked}
                             handleCurrentScore={handleCurrentScore}
-                            obj={cardsArr[position]}
                         />
                     )   
                 })}

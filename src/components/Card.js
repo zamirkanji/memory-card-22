@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
 
-export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, setCardClicked, handleCurrentScore, isCardClicked, handleCardClicked, obj, userId, getIndex, getValue}) {
+export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked, handleCurrentScore, userId}) {
 
-    // const handleCardClick = (cc) => {
-    //     console.log('test');
-    //     setCardClicked(cc = true);
-    //     // obj.cardClicked = true; 
-    //     // console.log(obj.target);
-    // }
-
-    function checkIfCardClicked (cardClicked, userId) {
+    function handleCardClick (cardClicked, userId) {
         //filter card clicked and change cardclicked property to TRUE
         let filterCardClicked = cardClicked.filter(card => card[0].id === userId);
         filterCardClicked = filterCardClicked[0];
         filterCardClicked.cardClicked = true;
-
-
 
         // console.log(filterCardClicked);
         // console.log(cardClicked.map(arr => {
@@ -34,22 +25,19 @@ export default function Card ({id, shuffleGrid, image, nameOfPlayer, cardClicked
         <li 
             key={id} 
             className="card-container"
-            // onClick={handleCardClick}
-        >
-                <img 
-                    className="card" 
-                    src={image} 
-                    alt={nameOfPlayer}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        shuffleGrid();
-                        // shuffleGrid();
-                        // setCardClicked(true);
-                        handleCurrentScore();
-                        // handleCardClicked(obj, userId);
-                        checkIfCardClicked(cardClicked, userId);
-                    }}/>
-                <h6>{nameOfPlayer}</h6>
+            onClick={(e) => {
+                console.log(e.target);
+                e.preventDefault();
+                shuffleGrid();
+                handleCurrentScore();
+                handleCardClick(cardClicked, userId);
+        }}>
+            <img 
+                className="card" 
+                src={image} 
+                alt={nameOfPlayer}
+            />
+            <h6>{nameOfPlayer}</h6>
         </li>
     )
 }
