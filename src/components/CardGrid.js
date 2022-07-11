@@ -44,7 +44,7 @@ export default function CardGrid() {
     //     {image: paulPierce, nameOfPlayer: 'Paul Pierce', id: 17, cardClicked: false},
     // ]
 
-    const [cardsArr, serCardsArr] = useState([
+    const [cardsArr, setCardsArr] = useState([
         {image: demarDerozan, nameOfPlayer: 'Demar Derozan', id: 0, cardClicked: false},
         {image: ericBledsoe, nameOfPlayer: 'Eric Bledsoe', id: 1, cardClicked: false},
         {image: goranDragic, nameOfPlayer: 'Goran Dragic', id: 2, cardClicked: false},
@@ -94,29 +94,7 @@ export default function CardGrid() {
     }
     
     const shuffleGrid = () => {
-        // console.log(cards.map(card => card[1]));
-        // console.log(cards);
-        // console.log(setCards);
-        // setCards((v, i) => [v , randomizePosition(getIndex())]);
-        // setCards(randomizePosition(getIndex()));
         setCards(randomizePosition(cards));
-    }
-
-    const getIndex = () => {
-        const index = cards.map(arr => arr[1]);
-        console.log(index);
-        return index;
-    }
-
-    const getValue = () => {
-        const value = cards.map(arr => arr[0]);
-        console.log(value);
-        return value;
-    }
-
-    const filterByNumber = (card) => {
-        console.log(card[1]);
-        return typeof (card) === 'number' ? true : false;
     }
 
     // useEffect(() => {
@@ -135,6 +113,11 @@ export default function CardGrid() {
                     // console.log(position);
                     return (
                         <Card 
+                            // obj={cardsArr[position]}
+                            // objClicked={cardsArr[position].cardClicked}
+                            // cardsArr={cardsArr}
+                            // setCardsArr={setCardsArr}
+
                             key={cardsArr[position].id} 
                             userId={cardsArr[position].id}
                             image={cardsArr[position].image} 
