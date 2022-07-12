@@ -1,6 +1,7 @@
 import Card from './Card';
 import Game from './Game';
-import { useState, useEffect } from 'react';
+import Header from './Header';
+import { useState, useEffect, useReducer } from 'react';
 import demarDerozan from "../images/demarDerozan.png";
 import ericBledsoe from "../images/ericBledsoe.png";
 import goranDragic from "../images/goranDragic.png";
@@ -44,6 +45,8 @@ export default function CardGrid() {
     //     {image: paulPierce, nameOfPlayer: 'Paul Pierce', id: 17, cardClicked: false},
     // ]
 
+    // const [state, dispatch] = useReducer(reducer, {currentScore: 0, cards: cardsArr.map((value, index) => index)})
+
     const [cardsArr, setCardsArr] = useState([
         {image: demarDerozan, nameOfPlayer: 'Demar Derozan', id: 0, cardClicked: false},
         {image: ericBledsoe, nameOfPlayer: 'Eric Bledsoe', id: 1, cardClicked: false},
@@ -75,17 +78,35 @@ export default function CardGrid() {
 
     }
 
-    // const gameOver = () => {
-    //   setCardClicked(false);
-    // }
+    const gameOver = () => {
+      setCardClicked(false);
+      let bestScore = currentScore;
+      setCurrentScore(0);
+      return (
+        <Header bestScore={bestScore}/>
+      )
+    }
 
-    //handle functions
+    function handleCardClick (cardClicked, userId) {
+        shuffleGrid();
+        handleCurrentScore();
+
+        let filterCardClicked = cardClicked.filter(card => card[0].id === userId);
+        filterCardClicked = filterCardClicked[0];
+
+        if (filterCardClicked[0].cardClicked === true) {
+            console.log('game over!');
+            gameOver();
+        }
+
+        filterCardClicked[0].cardClicked = true;
+    }
+
     const handleCurrentScore = () => {
         setCurrentScore(s => s + 1); 
     }
     
     const randomizePosition = (cards) => {
-        //need to figure out how to replace cards[1]
         for (let i = cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [cards[i], cards[j]] = [cards[j], cards[i]];
@@ -96,13 +117,6 @@ export default function CardGrid() {
     const shuffleGrid = () => {
         setCards(randomizePosition(cards));
     }
-
-    // useEffect(() => {
-    //     // console.log('cards are shuffled');
-    //     if (cardClicked === true) {
-    //         console.log("Game over");
-    //     }
-    // }, [cardClicked]);
 
     return (
         <>
@@ -126,6 +140,8 @@ export default function CardGrid() {
                             cardClicked={cardClicked}
                             setCardClicked={setCardClicked}
                             handleCurrentScore={handleCurrentScore}
+
+                            handleCardClick={() => handleCardClick(cardClicked, cardsArr[position].id)}
                         />
                     )   
                 })}
